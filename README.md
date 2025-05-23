@@ -6,6 +6,7 @@ HoneyPot 是一个基于 FastAPI 构建的蜜罐系统，用于记录和分析�
 
  - 模拟登录和注册页面。
  - 记录访问者的 IP 地址、User-Agent 和提交的数据。
+ - 异步数据处理，用户无感知。
  - 长度攻击防范，避免塞爆数据库。
 
 ## 🔧 安装与部署
@@ -44,6 +45,10 @@ honeypot.qqays.xyz {
     }
 }
 ```
+
+## 🚧 503 Service Unavailable
+
+qqAys/HoneyPot 被设计成无业务后端，任何操作都会异步处理主动返回 `503 Service Unavailable` ，是最简单蜜罐系统。
 
 ## ⚠️ 注意事项
 
