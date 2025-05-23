@@ -26,6 +26,8 @@ class Config(BaseSettings):
 
     PROJECT_NAME: str = "HoneyPot"
 
+    MAX_VALUE_LENGTH: int = 100
+
     DATABASE_TYPE: str
     DATABASE_HOST: str
     DATABASE_PORT: int
@@ -177,7 +179,7 @@ def handle_background_task(session: Session, request: Request, action: str, data
 
     for k, v in data.items():
         v_length = len(v)
-        if v_length > 100:
+        if v_length > config.MAX_VALUE_LENGTH:
             length_attack_data[k + "_length"] = v_length
 
     if length_attack_data:
