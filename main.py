@@ -113,7 +113,7 @@ logger = Logger()
 
 engine = create_engine(
     config.DATABASE_DSN,
-    echo=False,
+    echo=True if config.LOG_LEVEL.upper() == "DEBUG" else False,
     json_serializer=lambda v: json.dumps(v, ensure_ascii=False),
     json_deserializer=lambda s: json.loads(s),
 )
