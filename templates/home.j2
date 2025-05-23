@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>管理后台 - Perfect Parking</title>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+	<style>
+		:root {
+		  --bg: #2E3440;
+		  --panel: #3B4252;
+		  --text: #D8DEE9;
+		  --accent: #88C0D0;
+		  --footer-text: #4C566A;
+		}
+
+		* {
+		  box-sizing: border-box;
+		  margin: 0;
+		  padding: 0;
+		  font-family: 'Inter', sans-serif;
+		}
+
+		html, body {
+		  height: 100%;
+		}
+
+		body {
+		  background-color: var(--bg);
+		  color: var(--text);
+		  display: flex;
+		  flex-direction: column;
+		  padding: 20px;
+		}
+
+		.main {
+		  flex: 1;
+		  display: flex;
+		  flex-direction: column;
+		  align-items: center;
+		  justify-content: center;
+		}
+
+		.title {
+		  font-size: 1.5rem;
+		  color: var(--accent);
+		  margin-bottom: 20px;
+		  font-weight: 600;
+		}
+
+		.container {
+		  background-color: var(--panel);
+		  padding: 30px;
+		  border-radius: 12px;
+		  width: 100%;
+		  max-width: 380px;
+		  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+		}
+
+		.tabs {
+		  display: flex;
+		  margin-bottom: 20px;
+		  border-bottom: 2px solid var(--accent);
+		}
+
+		.tab {
+		  flex: 1;
+		  text-align: center;
+		  padding: 10px 0;
+		  cursor: pointer;
+		  font-weight: 500;
+		  color: var(--text);
+		  transition: background-color 0.2s;
+		}
+
+		.tab.active {
+		  border-bottom: 3px solid var(--accent);
+		  color: var(--accent);
+		}
+
+		form {
+		  display: none;
+		  flex-direction: column;
+		}
+
+		form.active {
+		  display: flex;
+		}
+
+		label {
+		  margin-bottom: 15px;
+		  font-size: 14px;
+		}
+
+		input {
+		  width: 100%;
+		  padding: 8px 10px;
+		  margin-top: 5px;
+		  border: 1px solid #4C566A;
+		  border-radius: 6px;
+		  background: var(--bg);
+		  color: var(--text);
+		}
+
+		button {
+		  margin-top: 10px;
+		  padding: 10px;
+		  border: none;
+		  border-radius: 6px;
+		  background-color: var(--accent);
+		  color: var(--bg);
+		  font-weight: 600;
+		  cursor: pointer;
+		  transition: opacity 0.2s;
+		}
+
+		button:hover {
+		  opacity: 0.8;
+		}
+
+		footer {
+		  font-size: 12px;
+		  color: var(--footer-text);
+		  text-align: center;
+		  padding: 10px 0;
+		}
+	</style>
+</head>
+<body>
+	<div class="main">
+		<div class="title">Perfect Parking 系统后台管理</div>
+		<div class="container">
+			<div class="tabs">
+				<div id="tab-login" class="tab active">登录</div>
+				<div id="tab-register" class="tab">合作（注册）</div>
+			</div>
+			<form id="form-login" class="active" method="post" action="/login">
+				<label>邮箱： <input type="email" name="email" required>
+				</label>
+				<label>密码： <input type="password" name="password" required>
+				</label>
+				<button type="submit">登录</button>
+			</form>
+			<form id="form-register" method="post" action="/register">
+				<label style="font-size: small">填写合作信息，会有专人与您联系，请注意来电。</label>
+				<label>姓名： <input type="text" name="name" placeholder="请输入姓名" required>
+				</label>
+				<label>电话： <input type="tel" name="phone" placeholder="请输入电话" required>
+				</label>
+				<label>城市： <input type="text" name="city" placeholder="请输入城市" required>
+				</label>
+				<button type="submit">寻求合作</button>
+			</form>
+		</div>
+	</div>
+	<footer>© 2021 - 2025 Perfect Parking. All rights reserved.</footer>
+	<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+	<script>
+		const tabLogin = document.getElementById('tab-login');
+		const tabRegister = document.getElementById('tab-register');
+		const formLogin = document.getElementById('form-login');
+		const formRegister = document.getElementById('form-register');
+		tabLogin.addEventListener('click', () => {
+		  tabLogin.classList.add('active');
+		  tabRegister.classList.remove('active');
+		  formLogin.classList.add('active');
+		  formRegister.classList.remove('active');
+		});
+		tabRegister.addEventListener('click', () => {
+		  tabRegister.classList.add('active');
+		  tabLogin.classList.remove('active');
+		  formRegister.classList.add('active');
+		  formLogin.classList.remove('active');
+		});
+	</script>
+</body>
+</html>

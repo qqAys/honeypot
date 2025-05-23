@@ -1,0 +1,27 @@
+services:
+  honeypot:
+    build:
+        context: .
+    container_name: honeypot
+    ports:
+      - 8200:8200
+    env_file: .env
+    volumes:
+      - hp_logs:/app/logs
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  db:
+    image: mariadb:lts
+    container_name: hp_db
+    env_file: .env
+    expose:
+      - 3306
+    volumes:
+      - hp_db:/var/lib/mysql
+    restart: unless-stopped
+
+volumes:
+  hp_logs:
+  hp_db:
