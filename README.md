@@ -29,6 +29,22 @@ HoneyPot 是一个基于 FastAPI 构建的蜜罐系统，用于记录和分析�
    docker compose up -d
    ```
 
+## 🪜 用户真实 IP 获取
+
+https://github.com/qqAys/honeypot/blob/b79048843ad74c0f368ceab66f977767e98ae4fb/main.py#L175
+
+如果您将 HoneyPot 部署在中间件（如 Nginx、Caddy 等）之后。此时，需要确保中间件转发请求时添加 `X-Real-IP` 请求头，以便 HoneyPot 能够正确获取用户的真实 IP 地址。
+
+### Caddyfile
+
+```Caddyfile
+honeypot.qqays.xyz {
+    reverse_proxy 127.0.0.1:8200 {
+        header_up X-Real-IP {http.request.remote.host}
+    }
+}
+```
+
 ## ⚠️ 注意事项
 
  - 本项目为蜜罐系统，请勿用于非法用途。
