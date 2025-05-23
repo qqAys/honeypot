@@ -51,6 +51,10 @@ honeypot.qqays.xyz {
  - 建议部署于内网或测试环境中。
  - 如需增强安全性，建议添加 HTTPS 支持。
 
-## 👮 免责声明
+### 👮 免责声明
 
 参见 [disclaimer.md](./disclaimer.md)
+
+## 🪪 许可证
+
+This project is licensed under the MIT License.
